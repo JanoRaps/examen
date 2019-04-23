@@ -1,0 +1,92 @@
+//Mantenerse
+	if (indexStay<stay.length) {
+		image(stay[indexStay],0,0,183,175)
+		indexStay++
+	}else{
+		indexStay=0
+		image(stay[indexStay],0,0,183,175)
+	}
+
+	//Correr
+	if (indexRun<run.length) {
+		//image(run[indexRun],0,0,183,175)
+		image(run[indexRun],200,height-260,183,175)
+		indexRun++
+	}else{
+		indexRun=0
+		image(run[indexRun],200,height-260,183,175)
+		//image(run[indexRun],0,0,183,175)
+	}
+
+	//Deslizar
+	if (indexSlide<slide.length) {
+		image(slide[indexSlide],0,0,183,175)
+		indexSlide++
+	}else{
+		indexSlide=0
+		image(slide[indexSlide],0,0,183,175)
+	}
+
+
+	//Perder
+	if (indexLose<lose.length) {
+		image(lose[indexLose],0,0,183,175)
+		indexLose++
+	}else{
+		indexLose=0
+		image(lose[indexLose],0,0,183,175)
+	}
+
+
+	//Saltar
+	if (indexJump<jump.length) {
+		image(jump[indexJump],0,0,183,175)
+		indexJump++
+	}else{
+		indexJump=0
+		image(jump[indexJump],0,0,183,175)
+	}
+	//image(car,width-300,height-200)
+
+
+	//------------------------------
+
+	dentro de saltar
+
+		//Saltar
+
+		for (var i=0; i<jump.length; i++) {
+			if (indexJump<jump.length) {
+				for (const p of parallax) {
+					p.draw()
+				}
+				for (const o of obstaculo) {
+					o.draw()
+				}
+				image(jump[indexJump],50,(height-260+(indexJump*20)),183,175)
+				indexJump++
+			}else{
+				indexJump=0
+				image(jump[indexJump],50,height-260,183,175)
+			}
+		}
+		if ((height-260-(indexJump*15))==411){
+			keyCode = 74
+			//obstaculo.push(new obstacle(fall,width, height-230,120,131,speed*5))
+			console.log(obstaculo[0])
+		}
+
+//-----------------------------------
+
+colision
+var hit = false;
+function draw() {
+  background(255);
+	rect(200,200,100,150);
+	rect(mouseX,mouseY,50,75);
+
+	hit = collideRectRect(200,200,100,150,mouseX,mouseY,50,75);
+
+	print("colliding? " + hit);
+
+}
